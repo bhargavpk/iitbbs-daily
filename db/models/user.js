@@ -55,3 +55,5 @@ const User = mongoose.model('User',{
     },
     //Add additional fields when required
 });
+
+module.exports = User;
