@@ -1,0 +1,32 @@
+<html>
+    <head>
+    <title>Test Homepage</title>
+    <link rel="stylesheet" href="/css/someHeaderstyle.css">
+    <link rel="stylesheet" href="/css/style-home.css">
+    </head>
+    <body>
+        {{>someHeader}}
+        <hr>
+    <div id = "box-heading">
+         <h2>Please choose an option</h2>
+    </div>
+    <div class = "sample-box">
+        <div class = "signin-form">
+            <form>
+                <div>First Name: <input type="text" id="firstName"></div> 
+                <div>Last Name: <input type="text" id="lastName"></div>
+                <div>User Name: <input type="text" id="userName-signin"></div>
+                <div>E-mail: <input type="text" id="password-signin"></div>
+                <button id = "signin-btn">Signin</button>
+            </form>
+        </div>
+        <div class = "login-form">
+            <form>
+                <div>User Name: <input type="text" id="userName-login"></div>
+                <div>Password: <input type="text" id="password-login"></div>
+                <button id = "login-btn">Login</button>
+            </form>
+        </div>
+    </div>
+    </body>
+</html>

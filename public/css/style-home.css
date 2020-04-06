@@ -1,0 +1,34 @@
+body{
+    padding: 10px;
+    padding-top: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #4f4f4f;
+    margin: auto;
+    font-size: 15px;
+    text-align: center;
+}
+.sample-box{
+    width:70%;
+    margin:auto;
+    display: flex;
+}
+.signin-form{
+    display:flex;
+    flex:1;
+    order:1;
+}
+.login-form{
+    display: flex;
+    flex:3;
+    order:2;
+}
+ #login-btn{
+    padding-right:10px;
+    padding-left:10px;
+    font-weight:5px;
+}
+#signin-btn{
+    padding-right:10px;
+    padding-left:10px;
+    font-weight:5px;
+} 
