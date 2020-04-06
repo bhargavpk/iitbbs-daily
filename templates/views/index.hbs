@@ -1,32 +1,71 @@
-<html>
-    <head>
-    <title>Test Homepage</title>
-    <link rel="stylesheet" href="/css/someHeaderstyle.css">
-    <link rel="stylesheet" href="/css/style-home.css">
-    </head>
-    <body>
-        {{>someHeader}}
-        <hr>
-    <div id = "box-heading">
-         <h2>Please choose an option</h2>
-    </div>
-    <div class = "sample-box">
-        <div class = "signin-form">
-            <form>
-                <div>First Name: <input type="text" id="firstName"></div> 
-                <div>Last Name: <input type="text" id="lastName"></div>
-                <div>User Name: <input type="text" id="userName-signin"></div>
-                <div>E-mail: <input type="text" id="password-signin"></div>
-                <button id = "signin-btn">Signin</button>
-            </form>
-        </div>
-        <div class = "login-form">
-            <form>
-                <div>User Name: <input type="text" id="userName-login"></div>
-                <div>Password: <input type="text" id="password-login"></div>
-                <button id = "login-btn">Login</button>
-            </form>
-        </div>
-    </div>
-    </body>
+<!DOCTYPE html>
+<head>
+	<title>IIT_BBS Daily</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel = "icon" href =  "/images/logo.png" type = "image/x-icon"> 
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+{{!-- Invoke partial {{>header-index}} later --}}
+<header class="header">
+		<h1>
+			iit-bbs Daily
+		</h1>
+</header>
+
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="#">
+			<h1>Create Account</h1>
+			<span>Please Use Your Insitute email</span>
+			
+			
+			<input type="text" placeholder="First Name" />
+			<input type="text" placeholder="Last Name" />
+			<input type="text" placeholder="User Name" />
+			<input type="email" placeholder="Email" />
+			<input type="password" placeholder="Password" />
+			<button>Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="#">
+			<h1>Sign In</h1>
+
+			<span>Please Use your Insitute email Account</span>
+			<input type="email" placeholder="Email" />
+			<input type="password" placeholder="Password" />
+			<a href="#">Forgot your password?</a>
+			<button>Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details to Join Group.</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{!-- Invoke footer partial {{>footer-index}} later--}}
+<footer>
+	<p>
+		All Rights are reserved to @ iit-bbs Daily 2020
+	</p>
+</footer>
+
+<script src="/js/dummy.js"></script>
+</body>
+
 </html>
