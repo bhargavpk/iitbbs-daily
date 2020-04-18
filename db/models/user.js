@@ -9,8 +9,7 @@ const User = mongoose.model('User',{
             trim:true,
             validate(value){
                 if(!validator.isAlpha(value))
-                    throw new Error('All characters must be alphabets!');
-                value = value.charAt(0).toUpperCase() + value.splice(0,1).toLowerCase();
+                    throw new Error('All characters of first name must be alphabets!');
             }
         },
         lastName:{
@@ -19,8 +18,7 @@ const User = mongoose.model('User',{
             trim:true,
             validate(value){
                 if(!validator.isAlpha(value))
-                    throw new Error('All characters must be alphabets!');
-                value = value.charAt(0).toUpperCase() + value.splice(0,1).toLowerCase();
+                    throw new Error('All characters of last name must be alphabets!');
             }
         },
     },
@@ -53,6 +51,10 @@ const User = mongoose.model('User',{
                 throw new Error('Password should contain at least one special character!');
         }
     },
+    login_stat:{
+        type:Boolean,
+        default:false
+    }
     //Add additional fields when required
 });
 

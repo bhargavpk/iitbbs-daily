@@ -60,6 +60,13 @@ span {
 	border-radius: 10px;
 }
 
+.val-error span{
+	padding-top: 5px;
+	font-size: 14px;
+	color: red;
+	border-radius: 10px;
+}
+
 a {
 	color: #333;
 	font-size: 14px;
@@ -261,4 +268,3 @@ footer {
     text-align: center;
 	z-index: 882;
 }
-
