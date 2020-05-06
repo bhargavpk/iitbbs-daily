@@ -80,7 +80,7 @@ formSignIn.addEventListener('click',(e)=>{
 		if(!data.error)
 		{
 				if(data.status_pass === 'right')
-					window.location.href = '/test_success';
+					window.location.href = '/user?username='+data.username;
 				else
 					document.getElementById('signin-val-error').textContent = 'Invalid Username or password';
 		}

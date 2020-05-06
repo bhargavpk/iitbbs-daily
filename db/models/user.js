@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
-const User = mongoose.model('User',{
+const postSchema = new mongoose.Schema({
     name:{
         firstName:{
             type:String,
@@ -56,6 +56,12 @@ const User = mongoose.model('User',{
         default:false
     }
     //Add additional fields when required
-});
+})
+postSchema.virtual('posts',{
+    ref:'Post',
+    localField:'userName',
+    foreignField:'author'
+})
+const User = mongoose.model('User',postSchema);
 
 module.exports = User;

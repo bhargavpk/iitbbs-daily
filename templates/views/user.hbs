@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>User page</title>
+        <link rel="stylesheet" href="/css/user-style1.css">
+        <link rel = "icon" href =  "/images/logo.png" type = "image/x-icon">
+    </head>
+    <body>
+        <div id="nav-box">
+        <header class="header">
+            <h1>
+                iit-bbs Daily
+            </h1>
+        </header>    
+        <a href="" class="nav-ele" id="about-nav">About</a>
+        <a href="/account?username={{userName}}" class="nav-ele" id="acc-nav">Account</a>
+        <a href="/" class="nav-ele" id="lo-nav">Log out</a>
+        </div>
+        <div class="container">
+            <div class="post-box">
+                <div id="user-message">Welcome {{userName}}</div>
+                <div class="post-user">
+                    <textarea id="post-input" cols="30" rows="7" placeholder="Post something as {{userName}}"></textarea>
+                    <div id="post-input-err"></div> 
+                    <button id="post-btn">Post</button>
+                </div>
+                <div id="post-populate-box"></div>
+                <div id="pagination-bar">
+                    <img id="back-icon" src="/images/back-icon.png" alt="" />
+                    <img id="for-icon" src="/images/for-icon.png" alt="" />
+                </div>
+            </div>
+            <div class="access-box">
+                <div id="access-head">Search by user name</div> 
+                <div id="access-input">
+                    <input type="text" placeholder="Search" />
+                    <img src="/images/search.png" alt="" id="search-icon"/>
+                </div>
+                <div id="search-err"></div>
+            </div>
+        </div>
+        <script src="/js/userapp.js"></script>
+    </body>
+</html>

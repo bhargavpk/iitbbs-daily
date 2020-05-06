@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+
+body {
+	background: #f6f5f7;
+	background-repeat: no-repeat;
+	align-items: center;
+	font-family: 'Montserrat', sans-serif;
+    height: 100%;
+    margin: 0;
+}
+#nav-box{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+	background-color: #008ECC;
+    color: #fff;
+    font-size: 24px;
+    padding-top:5px;
+    /* padding-bottom: 5px; */
+}
+.header{
+    text-align: left;
+    padding-left: 30px;
+    flex-grow: 8;
+}
+.nav-ele{
+    display: block;
+    flex-grow:1;
+    padding-top:10px;
+    color:white;
+    text-align:center;
+    text-decoration: none;
+    font-size:25px;
+    transition-duration: 0.4s;
+}
+#nav-box a:hover{
+    background-color:#253E81;
+}
+h1 {
+    font-weight: bold;
+	margin: 0;
+}
+#user-message{
+    background-color: /*#353964*/#253E81;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
+.container{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.post-box{
+    order: 1;
+    width:60%;
+    height:100%;
+    min-height: 90vh;
+    margin-left:auto;
+    padding:10px;
+    background-color: #253E81;
+}
+.post-user{
+    width: 250px;
+    margin-left:auto;
+}
+/* button{
+    display: block;
+    margin: auto;
+    margin-top:5px;
+    width: 30%;
+    border-width: 2px;
+    border-color: lightblue;
+    color:#253E81;
+    background-color: lightblue;
+} */
+button{
+    display: block;
+    margin:auto;
+    margin-top:5px;
+    width: 30%;
+    background-color: #008ECC;
+    color:white;
+    padding:5px 10px 5px 10px;
+    border-width:0.05px;
+    border-color: lightblue;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+}
+button:hover{
+    background-color: lightblue;
+    color:#253E81;
+}
+textarea{
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+    resize: none;
+}
+#post-input-err{
+    color:lightblue;
+    font-size: 15px;
+    text-align: center;
+}
+.post-ele{
+    background-color: white;
+    width: 60%;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 10px;
+}
+.post-ele-header{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.header-author{
+    color: darkgray;
+    font-size: 15px;
+    margin-bottom: 1em;
+}
+.header-date{
+    color: darkgray;
+    font-size: 15px;
+    margin-bottom: 1em;
+}
+
+.num-info-box{
+    margin-top:1em;
+    margin-bottom:1em;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.app-num{
+    order:1;
+    color: darkgray;
+    font-size: 15px;
+}
+.btn-box{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.btn-box button{
+    margin:0;
+    background-color: white;
+    padding:5px 10px 5px 10px;
+    border-width:1px;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.approve-btn{
+    order:1;
+    width:80px;
+    color:green;
+    border-color: green;
+    /* margin-right:auto; */
+}
+.approve-btn:hover{
+    color:white;
+    background-color: green;
+}
+.disapprove-btn{
+    order:2;
+    width:100px;
+    color:red;
+    border-color:red;
+    /* margin-left:auto; */
+}
+.disapprove-btn:hover{
+    color:white;
+    background-color: red;
+}
+
+.access-box{
+    order:2;
+    min-height: 90vh;
+    width:30%;
+    padding:10px;
+    background-color: lightgray;
+}
+#pagination-bar img{
+    padding:10px;
+    display: block;
+}
+#pagination-bar img:hover{
+    cursor: pointer;
+}
+#pagination-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+#access-head{
+    margin-top: 20px;
+    text-align: center;
+    color:#646464;
+    font-weight: 600;
+    font-size:20px;
+}
+#access-input{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+    padding:10px;
+}
+#access-input input{
+    display: block;
+    padding:5px;
+}
+#access-input img{
+    display:block;
+}
+#access-input img:hover{
+    cursor: pointer;
+}
+#search-err{
+    text-align: center;
+}
+
