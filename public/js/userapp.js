@@ -1,4 +1,20 @@
 const userMessageBox = document.getElementById('user-message');
+var userName = userMessageBox.textContent.split(" ")[1];
+fetch('/user/auth',{
+    method:'POST',
+    headers:{
+        'Accept':'application/json',
+        'Content-type':'application/json',
+        'Authorization':'Bearer '+document.cookie.split(";")[0].split("=")[1]
+    },
+    body:JSON.stringify({username:userName})
+}).then(res => {
+    return res.json();
+}).then(data =>{
+    if(data.error)
+        window.location.href = '/';
+});
+
 const postBtn = document.getElementById('post-btn');
 const postInput = document.getElementById('post-input');
 const postBox = document.getElementsByClassName('post-box')[0];
@@ -7,78 +23,47 @@ const postInputError = document.getElementById('post-input-err');
 const forIcon = document.getElementById('for-icon');
 const backIcon = document.getElementById('back-icon');      
 
-var userName = userMessageBox.textContent.split(" ")[1];
-
 //Request functions
-approve_patch = function(postId, newAppNum){
-    fetch('/patch_test?user='+userName,{
+approve_patchReq = function(postId,newAppNum){
+    fetch('/patch_post?&update=inc',{
         method:'PATCH',
         headers:{
             'Accept':'application/json',
-            'Content-type':'application/json'
+            'Content-type':'application/json',
+            'Authorization':'Bearer '+document.cookie.split(";")[0].split("=")[1]
         },
         body:JSON.stringify({
+            user:userName,
             id:postId
         })
     }).then(res => {
         return res.json();
     }).then(data => {
-            approve_patchReq(postId,data.status, newAppNum);
+        console.log(data);
+        if(!data.error)
+            if(!data.status)
+                newAppNum.textContent = data.numApproves+' Approves';
     });
 }
-
-disapprove_patch = function(postId,newDisappNum){
-    var status;
-    fetch('/patch_test?user='+userName,{
+disapprove_patchReq = function(postId,newDisappNum){
+    fetch('/patch_post?&update=dec',{
         method:'PATCH',
         headers:{
             'Accept':'application/json',
-            'Content-type':'application/json'
+            'Content-type':'application/json',
+            'Authorization':'Bearer '+document.cookie.split(";")[0].split("=")[1]
         },
         body:JSON.stringify({
+            user:userName,
             id:postId
         })
     }).then(res => {
         return res.json();
     }).then(data => {
-            disapprove_patchReq(postId,data.status,newDisappNum); 
-    });
-}
-
-approve_patchReq = function(postId,status,newAppNum){
-    fetch('/patch_post?user='+userName+'&update=inc',{
-        method:'PATCH',
-        headers:{
-            'Accept':'application/json',
-            'Content-type':'application/json'
-        },
-        body:JSON.stringify({
-            id:postId,
-            status
-        })
-    }).then(res => {
-        return res.json();
-    }).then(data => {
         console.log(data);
-        newAppNum.textContent = data.numApproves+' Approves';
-    });
-}
-disapprove_patchReq = function(postId,status,newDisappNum){
-    fetch('/patch_post?user='+userName+'&update=dec',{
-        method:'PATCH',
-        headers:{
-            'Accept':'application/json',
-            'Content-type':'application/json'
-        },
-        body:JSON.stringify({
-            id:postId,
-            status
-        })
-    }).then(res => {
-        return res.json();
-    }).then(data => {
-        console.log(data);
-        newDisappNum.textContent = data.numDisapproves+' Disapproves';
+        if(!data.error)
+            if(!data.status)
+                newDisappNum.textContent = data.numDisapproves+' Disapproves';
     });
 }
 
@@ -107,16 +92,10 @@ addPost = function(postObj){
         disappBtn.className = 'disapprove-btn';
         appBtn.textContent = 'Approve';
         disappBtn.textContent = 'Disapprove';
-        // var headNode = document.createTextNode(postObj.author);
         newPostHeaderAuthor.textContent = postObj.author
         newPostHeaderDate.textContent = postObj.createdAt.split('T')[0];
         var textNode = document.createTextNode(postObj.description);
-        // var appNum = document.createTextNode(postObj.numApproves+' Approves');
-        // var disappNum = document.createTextNode(postObj.numDisapproves+' Disapproves');
-        //newPostHeader.appendChild(headNode);
         newPostContent.appendChild(textNode);
-        // newAppNum.appendChild(appNum);
-        // newDisappNum.appendChild(disappNum);
         newAppNum.textContent = postObj.numApproves+' Approves';
         newDisappNum.textContent = postObj.numDisapproves+' Disapproves';
         newPostHeader.appendChild(newPostHeaderAuthor);
@@ -132,15 +111,15 @@ addPost = function(postObj){
         postPopBox.appendChild(newPostObj);
 
         appBtn.addEventListener('click',e => {
-           approve_patch(newPostObj.id, newAppNum);
+           approve_patchReq(newPostObj.id, newAppNum);
         });
         disappBtn.addEventListener('click',e => {
-            disapprove_patch(newPostObj.id, newDisappNum);
+            disapprove_patchReq(newPostObj.id, newDisappNum);
         });
 }
 
 populatePostContent = async function(skip){
-    const res = await  fetch('/get_posts?user='+userName+'&skip='+skip);
+    const res = await  fetch('/user/get_posts?user='+userName+'&skip='+skip);
     const data = await res.json();
     data.forEach(postObj => {
         addPost(postObj);
@@ -155,11 +134,12 @@ document.getElementById('acc-nav').addEventListener('click',(e) => {
 
 postBtn.addEventListener('click',(e) => {
     const postBody = postInput.value;
-    fetch('/post',{
+    fetch('/user/post',{
         method:'POST',
         headers:{
             'Accept':'application/json',
-            'Content-type':'application/json'
+            'Content-type':'application/json',
+            'Authorization':'Bearer ' + document.cookie.split(";")[0].split("=")[1]
         },
         body:JSON.stringify({
             author: userName,
@@ -170,7 +150,7 @@ postBtn.addEventListener('click',(e) => {
     }).then(data => {
         if(data.error)
         {
-            postInputError.textContent = 'Post cant be empty';
+            postInputError.textContent = data.error;
             setTimeout(()=>{
                 postInputError.textContent = '';
             },3000)
@@ -220,6 +200,26 @@ document.getElementById('search-icon').addEventListener('click',(e) => {
             setTimeout(()=>{
                 document.getElementById('search-err').textContent = '';
             },3000)
+        }
+    })
+});
+
+document.getElementById('logout-nav').addEventListener('click',(e) => {
+    fetch('/logout?username='+userName,{
+        method:'POST',
+        headers:{
+            'Accept':'application/json',
+            'Content-type':'application/json',
+            'Authorization':'Bearer ' + document.cookie.split(";")[0].split("=")[1]
+        }
+    }).then(res =>{
+        return res.json();
+    }).then(data =>{
+        if(!data.error)
+        {
+            if(data.status === true)
+                document.cookie = 'authToken=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+            window.location.href = '/';
         }
     })
 })

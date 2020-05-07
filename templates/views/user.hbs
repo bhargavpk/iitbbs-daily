@@ -6,14 +6,10 @@
     </head>
     <body>
         <div id="nav-box">
-        <header class="header">
-            <h1>
-                iit-bbs Daily
-            </h1>
-        </header>    
-        <a href="" class="nav-ele" id="about-nav">About</a>
+        {{>header_index}}   
+        <a href="/about" class="nav-ele" id="about-nav">About</a>
         <a href="/account?username={{userName}}" class="nav-ele" id="acc-nav">Account</a>
-        <a href="/" class="nav-ele" id="lo-nav">Log out</a>
+        <a href="/" class="nav-ele" id="logout-nav">Log out</a>
         </div>
         <div class="container">
             <div class="post-box">

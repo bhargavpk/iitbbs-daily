@@ -21,7 +21,7 @@ body {
 }
 .header{
     text-align: left;
-    padding-left: 30px;
+    padding-left: 20px;
     flex-grow: 8;
 }
 .nav-ele{
@@ -130,4 +130,3 @@ h1 {
     text-align: center;
     padding:10px;
 }
-

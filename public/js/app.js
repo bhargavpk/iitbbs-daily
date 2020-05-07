@@ -47,9 +47,13 @@ formSignUp.addEventListener('click',(e)=>{
 		return res.json();
 	}).then(data => {
 		if(data.success === true)
-			window.location.href = '/test_success';
+		{
+			document.cookie = 'authToken='+data.token;
+			window.location.href = '/user?username='+signUp.userNameInput.value;
+		}
 		else
 		{
+			console.log(data);
 			if(!data.error_mess)
 			{
 				 const fieldName = Object.getOwnPropertyNames(data.error.errors)[0];
@@ -77,13 +81,13 @@ formSignIn.addEventListener('click',(e)=>{
 	}).then(res => {
 		return res.json();
 	}).then(data => {
-		if(!data.error)
-		{
-				if(data.status_pass === 'right')
-					window.location.href = '/user?username='+data.username;
-				else
-					document.getElementById('signin-val-error').textContent = 'Invalid Username or password';
-		}
+			if(data.status_pass === 'right')
+				{
+					document.cookie = 'authToken=' + data.token;
+					window.location.href = '/user?username='+signIn.userNameInput.value
+				}
+			else
+				document.getElementById('signin-val-error').textContent = 'Invalid Username or password';
 	})
 })
 
